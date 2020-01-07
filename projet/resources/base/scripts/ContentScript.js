@@ -9,6 +9,38 @@ class ContentScript {
 	async start() {
 
 	}
+	/**
+	 * @method getDataOffsetKey : get current tweet input field data-offset-key
+	 * @param {*} data : message data
+	 */
+	getDataOffsetKey(data){
+		if(data.target=="data-offset-key"){
+			let target = document.evaluate("//div[@class='public-DraftStyleDefault-block public-DraftStyleDefault-ltr']", document.body , null, XPathResult.ANY_TYPE,null);
+			if(target){
+				console.log("target find")
+				target = target.iterateNext();
+				if(target){
+					console.log(target);
+					let dataOffsetKey =target.getAttribute("data-offset-key"); 
+					return dataOffsetKey;
+				}
+			}
+		}else{ console.log("target mismatch");}
+
+	}
+
+	fillTweetInputField(key){
+		let target = document.evaluate("//div[@class='public-DraftStyleDefault-block public-DraftStyleDefault-ltr']", document.body , null, XPathResult.ANY_TYPE,null);
+		target = target.iterateNext();
+		let span = document.createElement("span");
+		span.setAttribute("data-offset-key", key);
+		let spanChild = document.createElement("span");
+		spanChild.setAttribute("data-text", "true");
+
+		spanChild.innerText = "hello world";//todo tweet generation
+		span.appendChild(spanChild);
+		target.appendChild(span);
+	}
 
 	/**
 	 * @method onMessage : message received
@@ -24,8 +56,15 @@ class ContentScript {
 			case "start":
 				await this.start();
 				result = true;
+
+				let key = this.getDataOffsetKey(data);
+				if(key){
+					console.log(key);
+					this.fillTweetInputField(key);
+				}
 				break;
 		}
+
 		return result;
 	}
 
