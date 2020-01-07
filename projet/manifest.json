@@ -13,7 +13,7 @@
 	"permissions": [ // https://developer.chrome.com/extensions/declare_permissions
 	
 		"*://localhost/*",
-		
+		"activeTab",
 		"tabs"
 		
 	],
@@ -52,7 +52,8 @@
 		
 			"matches": [ // https://developer.chrome.com/apps/match_patterns
 			
-				"*://localhost/*"
+				//"*://localhost/*"
+				"*://twitter.com/*"
 				
 			],
 			
