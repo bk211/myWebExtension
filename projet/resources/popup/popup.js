@@ -10,9 +10,12 @@ class ExtensionPopupScript extends PopupScript {
 		trace("START POPUP");
 		
 		setTimeout(() => {
-			this.port.send(CONTENT, "test", {hello: "world"}, this.port.tabs[0]);
+//			this.port.send(CONTENT, "test", {hello: "world"}, this.port.tabs[0]);
 			this.port.send(BACKGROUND, "test", {hello: "world"});
+			this.port.send(CONTENT, "start", {target:"data-offset-key"}, this.port.tabs[0]);
+			
 		}, 1000);
+
 
 	}
 
