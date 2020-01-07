@@ -13,20 +13,24 @@ class ExtensionContentScript extends ContentScript {
 
 	}
 
+
 	onMessage(from, type, data, tabId) {
 		let result = super.onMessage(from, type, data, tabId);
-
+		//trace(result)
 		// message from background, web or popup
 		switch(type) {
 
 			case "test":
-				trace("test from", _name(from));
+				trace("In content.js, test from", _name(from));
+				trace(data);
 				break;
 
 		}
-
 		return result;
 	}
+
+
+
 
 }
 

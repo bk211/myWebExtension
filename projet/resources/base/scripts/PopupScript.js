@@ -1,6 +1,7 @@
 class PopupScript {
 
 	constructor() {
+		trace("start popup script")
 		this.port = new PopupPort(this.onMessage.bind(this));
 	}
 

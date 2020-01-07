@@ -29,11 +29,24 @@ class BackgroundScript {
 	 * @param {number} tabId : emitter tabId if available
 	 */
 	onMessage(from, type, data, tabId) {
-		trace(type, "from", _name(from), "tab", tabId);
+		trace("bgs has received: ",type, "from", _name(from), "tab", tabId);
 		let result = null;
-		switch(type) {
 
+		switch(from) {
+			case BACKGROUND:
+				trace("In bgScript, received from background")
+				break;
+
+			case CONTENT:
+				trace("In bgScript, received from content")
+				break;
+
+			case POPUP:
+				trace("In bgScript, received from pop")
+				break;
+						
 		}
+
 		return result;
 	}
 
