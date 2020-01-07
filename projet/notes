@@ -1,0 +1,3 @@
+xxx = document.evaluate("//div[@class='public-DraftStyleDefault-block public-DraftStyleDefault-ltr']", document.body , null, XPathResult.ANY_TYPE,null);
+xxx.iterateNext()
+y.childNodes
